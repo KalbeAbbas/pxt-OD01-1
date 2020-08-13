@@ -173,8 +173,8 @@ namespace OD01 {
     //% group="Scrolling Display"
     export function printString(s: string, newline: boolean = true) {
         for (let n = 0; n < s.length; n++) {
-            //char(s.charAt(n), _cx, _cy, 1)
-            _cx += 6
+            char(s.charAt(n), _cx, _cy, 1)
+            _cx += 12
             if (_cx > 120) {
                 scroll()
             }
