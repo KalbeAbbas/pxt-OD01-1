@@ -113,10 +113,10 @@ namespace OD01 {
             _screen[ind + i] = (color > 0) ? Font_5x7[p + i] : Font_5x7[p + i] ^ 0xFF
 
             //lower_byte = (_screen[ind + i] & 0x80) | ((_screen[ind + i] & 0x80) >> 1) | (_screen[ind + i] & 0x40) | ((_screen[ind + i] & 0x40) >> 1) | (_screen[ind + i] & 0x20) | ((_screen[ind + i] & 0x20) >> 1) | (_screen[ind + i] & 0x10) | ((_screen[ind + i] & 0x10) >> 1)
-            higher_byte = (_screen[ind + i] & 0x08) | ((_screen[ind + i] & 0x08) >> 1) | (_screen[ind + i] & 0x04) | ((_screen[ind + i] & 0x04) >> 1) | (_screen[ind + i] & 0x02) | ((_screen[ind + i] & 0x02) >> 1) | (_screen[ind + i] & 0x01) | ((_screen[ind + i] & 0x01) >> 1)
+            //higher_byte = (_screen[ind + i] & 0x08) | ((_screen[ind + i] & 0x08) >> 1) | (_screen[ind + i] & 0x04) | ((_screen[ind + i] & 0x04) >> 1) | (_screen[ind + i] & 0x02) | ((_screen[ind + i] & 0x02) >> 1) | (_screen[ind + i] & 0x01) | ((_screen[ind + i] & 0x01) >> 1)
 
-            _buf7[j + 1] = higher_byte
-            _buf7[j + 2] = higher_byte
+            _buf7[j + 1] = _screen[ind + i]
+            _buf7[j + 2] = _screen[ind + i]
 
             j += 2
         }
