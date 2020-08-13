@@ -28,7 +28,7 @@ namespace OD01 {
     let _buf2 = pins.createBuffer(2)
     let _buf3 = pins.createBuffer(3)
     let _buf4 = pins.createBuffer(4)
-    let _buf7 = pins.createBuffer(7)
+    let _buf7 = pins.createBuffer(4)
     _buf7[0] = 0x40
     export let _DRAW = 1
     let _cx = 0
@@ -111,8 +111,8 @@ namespace OD01 {
         _buf7[0 + 1] = _screen[ind + 0]
         _buf7[1 + 1] = _screen[ind + 0]
         //}
-        //_screen[ind + 5] = (color > 0) ? 0 : 0xFF
-        //_buf7[6] = _screen[ind + 5]
+        _screen[ind + 2] = (color > 0) ? 0 : 0xFF
+        _buf7[3] = _screen[ind + 2]
         set_pos(col, row)
         pins.i2cWriteBuffer(_I2CAddr, _buf7)
     }
