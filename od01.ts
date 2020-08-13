@@ -114,7 +114,7 @@ namespace OD01 {
             j += 2
         }
         _screen[ind + 5] = (color > 0) ? 0 : 0xFF
-        _buf7[6] = _screen[ind + 5]
+        _buf7[13] = _screen[ind + 5]
         set_pos(col, row)
         pins.i2cWriteBuffer(_I2CAddr, _buf7)
     }
