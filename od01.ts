@@ -106,14 +106,14 @@ namespace OD01 {
         let p = (Math.min(127, Math.max(c.charCodeAt(0), 32)) - 32) * 5
         let ind = col + row * 128 + 1
 
-        for (let i = 0; i < 5; i++) {
-            _screen[ind + i] = (color > 0) ? Font_5x7[p + i] : Font_5x7[p + i] ^ 0xFF
-            _buf7[i + 1] = _screen[ind + i]
-        }
-        _screen[ind + 5] = (color > 0) ? 0 : 0xFF
-        _buf7[6] = _screen[ind + 5]
+        //for (let i = 0; i < 5; i++) {
+        _screen[ind + 0] = (color > 0) ? Font_5x7[p + 0] : Font_5x7[p + 0] ^ 0xFF
+        _buf7[0 + 1] = _screen[ind + 0]
+        _buf7[1 + 1] = _screen[ind + 0]
+        //}
+        //_screen[ind + 5] = (color > 0) ? 0 : 0xFF
+        //_buf7[6] = _screen[ind + 5]
         set_pos(col, row)
-        pins.i2cWriteBuffer(_I2CAddr, _buf7)
         pins.i2cWriteBuffer(_I2CAddr, _buf7)
     }
 
