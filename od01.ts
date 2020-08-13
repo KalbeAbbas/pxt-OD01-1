@@ -106,7 +106,7 @@ namespace OD01 {
         let p = (Math.min(127, Math.max(c.charCodeAt(0), 32)) - 32) * 5
         let ind = col + row * 128 + 1
 
-        for (let i = 0; i < 10; i += 2) {
+        for (let i = 0; i < 10; i++) {
             _screen[ind + i] = (color > 0) ? Font_5x7[p + i] : Font_5x7[p + i] ^ 0xFF // Each font five pixels wide
             _screen[ind + i + 1] = (color > 0) ? Font_5x7[p + i] : Font_5x7[p + i] ^ 0xFF // Each font five pixels wide
             _buf7[i + 1] = _screen[ind + i]
