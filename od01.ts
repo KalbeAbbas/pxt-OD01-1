@@ -28,7 +28,7 @@ namespace OD01 {
     let _buf2 = pins.createBuffer(2)
     let _buf3 = pins.createBuffer(3)
     let _buf4 = pins.createBuffer(4)
-    let _buf7 = pins.createBuffer(4)
+    let _buf7 = pins.createBuffer(13)
     _buf7[0] = 0x40
     export let _DRAW = 1
     let _cx = 0
@@ -105,14 +105,18 @@ namespace OD01 {
     function char(c: string, col: number, row: number, color: number = 1) {
         let p = (Math.min(127, Math.max(c.charCodeAt(0), 32)) - 32) * 5
         let ind = col + row * 128 + 1
+        let j = 0
 
-        //for (let i = 0; i < 5; i++) {
-        _screen[ind + 0] = (color > 0) ? Font_5x7[p + 0] : Font_5x7[p + 0] ^ 0xFF
-        _buf7[0 + 1] = _screen[ind + 0]
-        _buf7[1 + 1] = _screen[ind + 0]
-        //}
-        _screen[ind + 1] = (color > 0) ? 0 : 0xFF
-        _buf7[3] = _screen[ind + 1]
+        for (let i = 0; i < 5; i++) {
+            _screen[ind + i] = (color > 0) ? Font_5x7[p + i] : Font_5x7[p + i] ^ 0xFF
+            _buf7[j + 1] = _screen[ind + i]
+            _buf7[j + 2] = _screen[ind + i]
+
+            j += 2
+        }
+
+        _screen[ind + 5] = (color > 0) ? 0 : 0xFF
+        _buf7[12] = _screen[ind + 5]
         set_pos(col, row)
         pins.i2cWriteBuffer(_I2CAddr, _buf7)
     }
@@ -130,7 +134,7 @@ namespace OD01 {
     export function showString(s: string, col: number, row: number, color: number = 1) {
         for (let n = 0; n < s.length; n++) {
             char(s.charAt(n), col, row, color)
-            col += 6
+            col += 12
         }
     }
 
