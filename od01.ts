@@ -102,9 +102,36 @@ namespace OD01 {
         }
     }
 
-    function char(c: string, col: number, row: number, color: number = 1) {
-        let p = (Math.min(127, Math.max(c.charCodeAt(0), 32)) - 32) * 5
-        let ind = col + row * 128 + 1
+    function char(c: string, x: number, y: number, color: number = 1) {
+        let o = (Math.min(127, Math.max(c.charCodeAt(0), 32)) - 32) * 5
+        let p = 0
+
+        let col = 0
+        let ind = 0
+        p = Font_5x7[o]
+
+        for (let n = 0; n < c.length; n++) {
+            for (let i = 0; i < 5; i++) {
+                col = 0
+                for (let j = 0; j < 5; j++) {
+                    if (p & (1 << (5 * i + j)))
+                        col |= (1 << (j + 1))
+                }
+                ind = (x + n) * 5 * (_ZOOM + 1) + y * 128 + i * (_ZOOM + 1) + 1
+                if (color == 0)
+                    col = 255 - col
+                _screen[ind] = col
+                if (_ZOOM)
+                    _screen[ind + 1] = col
+            }
+        }
+        set_pos(x * 5, y)
+        let ind0 = x * 5 * (_ZOOM + 1) + y * 128
+        let buf = _screen.slice(ind0, ind + 1)
+        buf[0] = 0x40
+        pins.i2cWriteBuffer(_I2CAddr, buf)
+
+        /*let ind = col + row * 128 + 1
         let j = 0
         let lower_byte: number = 0
         let higher_byte: number = 0
@@ -113,10 +140,10 @@ namespace OD01 {
             _screen[ind + i] = (color > 0) ? Font_5x7[p + i] : Font_5x7[p + i] ^ 0xFF
 
             //lower_byte = (_screen[ind + i] & 0x80) | ((_screen[ind + i] & 0x80) >> 1) | (_screen[ind + i] & 0x40) | ((_screen[ind + i] & 0x40) >> 1) | (_screen[ind + i] & 0x20) | ((_screen[ind + i] & 0x20) >> 1) | (_screen[ind + i] & 0x10) | ((_screen[ind + i] & 0x10) >> 1)
-            //higher_byte = (_screen[ind + i] & 0x08) | ((_screen[ind + i] & 0x08) >> 1) | (_screen[ind + i] & 0x04) | ((_screen[ind + i] & 0x04) >> 1) | (_screen[ind + i] & 0x02) | ((_screen[ind + i] & 0x02) >> 1) | (_screen[ind + i] & 0x01) | ((_screen[ind + i] & 0x01) >> 1)
+            higher_byte = (_screen[ind + i] & 0x08) | ((_screen[ind + i] & 0x08) >> 1) | (_screen[ind + i] & 0x04) | ((_screen[ind + i] & 0x04) >> 1) | (_screen[ind + i] & 0x02) | ((_screen[ind + i] & 0x02) >> 1) | (_screen[ind + i] & 0x01) | ((_screen[ind + i] & 0x01) >> 1)
 
-            _buf7[j + 1] = _screen[ind + i]
-            _buf7[j + 2] = _screen[ind + i]
+            _buf7[j + 1] = higher_byte
+            _buf7[j + 2] = higher_byte
 
             j += 2
         }
@@ -124,7 +151,7 @@ namespace OD01 {
         _screen[ind + 5] = (color > 0) ? 0 : 0xFF
         _buf7[12] = _screen[ind + 5]
         set_pos(col, row)
-        pins.i2cWriteBuffer(_I2CAddr, _buf7)
+        pins.i2cWriteBuffer(_I2CAddr, _buf7)*/
 
         /*j = 0
 
