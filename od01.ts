@@ -313,7 +313,7 @@ namespace OD01 {
     //% weight=60 blockGap=8
     export function set2X() {
         _ZOOM = 1
-        cmd2(0xd6, _ZOOM)
+       // cmd2(0xd6, _ZOOM)
     }
 
     //% block="set1X"
