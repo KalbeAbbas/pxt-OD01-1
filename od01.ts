@@ -108,39 +108,27 @@ namespace OD01 {
 
         let ind = col + row * 128 + 1
         let j = 0
-        let lower_byte: number = 0
-        let higher_byte: number = 0
 
         for (let i = 0; i < 5; i++) {
             _screen[ind + i] = (color > 0) ? Font_5x7[p + i] : Font_5x7[p + i] ^ 0xFF
 
-            //lower_byte = (_screen[ind + i] & 0x80) | ((_screen[ind + i] & 0x80) >> 1) | (_screen[ind + i] & 0x40) | ((_screen[ind + i] & 0x40) >> 1) | (_screen[ind + i] & 0x20) | ((_screen[ind + i] & 0x20) >> 1) | (_screen[ind + i] & 0x10) | ((_screen[ind + i] & 0x10) >> 1)
-            //higher_byte = (_screen[ind + i] & 0x08) | ((_screen[ind + i] & 0x08) >> 1) | (_screen[ind + i] & 0x04) | ((_screen[ind + i] & 0x04) >> 1) | (_screen[ind + i] & 0x02) | ((_screen[ind + i] & 0x02) >> 1) | (_screen[ind + i] & 0x01) | ((_screen[ind + i] & 0x01) >> 1)
-
             _buf7[j + 1] = _screen[ind + i]
-            _buf7[j + 2] = _screen[ind + i]
+
+            if(_ZOOM)
+                _buf7[j + 2] = _screen[ind + i]
 
             j += 2
         }
 
         _screen[ind + 5] = (color > 0) ? 0 : 0xFF
-        _buf7[12] = _screen[ind + 5]
+        if(_ZOOM)
+        {
+            _buf7[12] = _screen[ind + 5]
+        }else{
+            _buf7[6] = _screen[ind + 5]
+        }
         set_pos(col, row)
         pins.i2cWriteBuffer(_I2CAddr, _buf7)
-
-        /*j = 0
-
-        for (let i = 0; i < 5; i++) {
-
-            _buf7[j + 1] = lower_byte
-            _buf7[j + 2] = lower_byte
-
-            j += 2
-        }
-
-        _buf7[12] = _screen[ind + 5]
-        set_pos(col, row + 7)
-        pins.i2cWriteBuffer(_I2CAddr, _buf7)*/
     }
 
     /**
