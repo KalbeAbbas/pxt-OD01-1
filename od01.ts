@@ -140,14 +140,13 @@ namespace OD01 {
     export function showString(s: string, col: number, row: number, color: number = 1) {
         for (let n = 0; n < s.length; n++) {
             char(s.charAt(n), col, row, color)
-            /*if(_ZOOM)
+            if(_ZOOM)
             {
                 col += 12
             }else{
                 col += 6
-            }*/
+            }
 
-            col += 6
         }
     }
 
