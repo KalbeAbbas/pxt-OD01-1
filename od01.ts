@@ -123,7 +123,7 @@ namespace OD01 {
         _screen[ind + 5] = (color > 0) ? 0 : 0xFF
         if(_ZOOM)
         {
-            _buf7[12] = _screen[ind + 5]
+            //_buf7[12] = _screen[ind + 5]
         }else{
             _buf7[6] = _screen[ind + 5]
         }
