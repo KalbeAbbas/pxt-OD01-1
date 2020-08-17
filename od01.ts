@@ -121,12 +121,13 @@ namespace OD01 {
         }
 
         _screen[ind + 5] = (color > 0) ? 0 : 0xFF
-        if(_ZOOM)
+        /*if(_ZOOM)
         {
             //_buf7[12] = _screen[ind + 5]
         }else{
             _buf7[6] = _screen[ind + 5]
-        }
+        }*/
+        _buf7[6] = _screen[ind + 5]
         set_pos(col, row)
         pins.i2cWriteBuffer(_I2CAddr, _buf7)
     }
@@ -144,12 +145,14 @@ namespace OD01 {
     export function showString(s: string, col: number, row: number, color: number = 1) {
         for (let n = 0; n < s.length; n++) {
             char(s.charAt(n), col, row, color)
-            if(_ZOOM)
+            /*if(_ZOOM)
             {
                 col += 12
             }else{
                 col += 6
-            }
+            }*/
+
+            col += 6
         }
     }
 
