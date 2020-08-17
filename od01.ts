@@ -144,7 +144,12 @@ namespace OD01 {
     export function showString(s: string, col: number, row: number, color: number = 1) {
         for (let n = 0; n < s.length; n++) {
             char(s.charAt(n), col, row, color)
-            col += 12
+            if(_ZOOM)
+            {
+                col += 12
+            }else{
+                col += 6
+            }
         }
     }
 
@@ -184,7 +189,12 @@ namespace OD01 {
     export function printString(s: string, newline: boolean = true) {
         for (let n = 0; n < s.length; n++) {
             char(s.charAt(n), _cx, _cy, 1)
-            _cx += 12
+            if(_ZOOM)
+            {
+                _cx += 12
+            }else{
+                _cx += 6
+            }
             if (_cx > 120) {
                 scroll()
             }
