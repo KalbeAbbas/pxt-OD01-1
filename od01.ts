@@ -114,8 +114,8 @@ namespace OD01 {
 
             _buf7[j + 1] = _screen[ind + i]
 
-            if(_ZOOM)
-                _buf7[j + 2] = _screen[ind + i]
+            /*if(_ZOOM)
+                _buf7[j + 2] = _screen[ind + i]*/
 
             j += 2
         }
