@@ -35,7 +35,7 @@ namespace OD01 {
     let _cx = 0
     let _cy = 0
 
-    let _ZOOM = 1
+    let _ZOOM = 0
 
     function cmd1(d: number) {
         let n = d % 256;
