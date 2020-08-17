@@ -29,7 +29,7 @@ namespace OD01 {
     let _buf2 = pins.createBuffer(2)
     let _buf3 = pins.createBuffer(3)
     let _buf4 = pins.createBuffer(4)
-    let _buf7 = pins.createBuffer(6)
+    let _buf7 = pins.createBuffer(7)
     _buf7[0] = 0x40
     export let _DRAW = 1
     let _cx = 0
