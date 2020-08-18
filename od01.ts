@@ -114,7 +114,7 @@ namespace OD01 {
         {
             for(let j = 0; j < 8; j++)
             {
-                if(Font_5x7[p + i] & (80 >> j))
+                if(Font_5x7[p + i] & (1 << j))
                 {
                     pixel(col + i, row + j)
                 }
