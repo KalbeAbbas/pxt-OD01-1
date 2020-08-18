@@ -97,17 +97,16 @@ namespace OD01 {
         let ind = x + page * 128 + 1
         let b = (color) ? (_screen[ind] | (1 << shift_page)) : clrbit(_screen[ind], shift_page)
         _screen[ind] = b
-        if (_DRAW) {
+        /*if (_DRAW) {
             set_pos(x, page)
             _buf2[0] = 0x40
             _buf2[1] = b
             pins.i2cWriteBuffer(_I2CAddr, _buf2)
-        }
+        }*/
     }
 
     function char(c: string, col: number, row: number, color: number = 1) {
         let p = (Math.min(127, Math.max(c.charCodeAt(0), 32)) - 32) * 5
-        let ind = col + row * 128 + 1
         let j = 0
 
         for(let i = 0; i < 5; i++)
@@ -120,6 +119,7 @@ namespace OD01 {
                 }
             }
         }
+        draw(1)
 
         /*for (let i = 0; i < 5; i++) {
             _screen[ind + i] = (color > 0) ? Font_5x7[p + i] : Font_5x7[p + i] ^ 0xFF
