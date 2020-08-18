@@ -116,7 +116,7 @@ namespace OD01 {
             {
                 if(Font_5x7[p + i] & (1 << j))
                 {
-                    pixel(col + i, row * 128 + j)
+                    pixel(col + i, row * 8 + j)
                 }
             }
         }
