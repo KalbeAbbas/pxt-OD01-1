@@ -167,6 +167,7 @@ namespace OD01 {
     export function showString(s: string, col: number, row: number, color: number = 1) {
         for (let n = 0; n < s.length; n++) {
             char(s.charAt(n), col, row, color)
+            _ZOMM = 1
             if(_ZOOM)
             {
                 col += 12
@@ -213,6 +214,7 @@ namespace OD01 {
     export function printString(s: string, newline: boolean = true) {
         for (let n = 0; n < s.length; n++) {
             char(s.charAt(n), _cx, _cy, 1)
+            _ZOOM = 1
             if(_ZOOM)
             {
                 _cx += 12
