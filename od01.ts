@@ -110,10 +110,19 @@ namespace OD01 {
         let ind = col + row * 128 + 1
         let j = 0
 
-        for (let i = 0; i < 5; i++) {
+        for(let i = 0; i < 5; i++)
+        {
+            for(let j = 0; j < 8; j++)
+            {
+                if(Font_5x7[p + i] & (80 >> j))
+                {
+                    pixel(col + i, row + j)
+                }
+            }
+        }
+
+        /*for (let i = 0; i < 5; i++) {
             _screen[ind + i] = (color > 0) ? Font_5x7[p + i] : Font_5x7[p + i] ^ 0xFF
-
-
             
             if(_ZOOM){
                 _buf13[j + 1] = _screen[ind + i]
@@ -141,7 +150,7 @@ namespace OD01 {
             pins.i2cWriteBuffer(_I2CAddr, _buf13)
         }else{
             pins.i2cWriteBuffer(_I2CAddr, _buf7)
-        }
+        }*/
     }
 
     /**
