@@ -213,7 +213,13 @@ namespace OD01 {
 
     function scroll() {
         _cx = 0
-        _cy++
+
+        if(_DOUBLE)
+        {
+            _cy +=2
+        }else{
+            _cy++
+        }
         if (_cy > 7) {
             _cy = 7
             _screen.shift(128)
