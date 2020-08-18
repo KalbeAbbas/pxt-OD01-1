@@ -191,10 +191,11 @@ namespace OD01 {
             steps = 6
         }
         for (let n = 0; n < s.length; n++) {
-            char(s.charAt(n), 0, 0, color)
+            char(s.charAt(n), col, row, color)
             col += steps
 
         }
+        if(_DOUBLE)draw(1)
     }
 
     /**
@@ -256,7 +257,7 @@ namespace OD01 {
             scroll()
         }
         
-        draw(1)
+        if(_DOUBLE)draw(1)
     }
 
      /**
