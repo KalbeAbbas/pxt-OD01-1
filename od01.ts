@@ -107,7 +107,6 @@ namespace OD01 {
 
     function char(c: string, col: number, row: number, color: number = 1) {
         let p = (Math.min(127, Math.max(c.charCodeAt(0), 32)) - 32) * 5
-        let j = 0
 
         for(let i = 0; i < 5; i++)
         {
@@ -116,6 +115,9 @@ namespace OD01 {
                 if(Font_5x7[p + i] & (1 << j))
                 {
                     pixel(col + i, row * 8 + j)
+                    pixel(col + i + 1, row * 8 + j)
+                    pixel(col + i , row * 8 + j + 1)
+                    pixel(col + i + 1 , row * 8 + j + 1)
                 }
             }
         }
@@ -343,16 +345,16 @@ namespace OD01 {
             cmd1(0xAE);
     }
 
-    //% block="set2X"
+    //% block="OD01 zoom in"
     //% weight=60 blockGap=8
-    export function set2X() {
+    export function zoomIn() {
         _ZOOM = 1
        cmd2(0xd6, _ZOOM)
     }
 
-    //% block="set1X"
+    //% block="OD01 zoom out"
     //% weight=60 blockGap=8
-    export function set1X() {
+    export function zoomOut() {
         _ZOOM = 0
         cmd2(0xd6, _ZOOM)
     }
