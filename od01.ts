@@ -191,14 +191,14 @@ namespace OD01 {
     }
 
     function scroll() {
-        /*_cx = 0
+        _cx = 0
         _cy++
-        if (_cy > 7) {*/
+        if (_cy > 7) {
             _cy = 7
             _screen.shift(128)
             _screen[0] = 0x40
             draw(1)
-        //}
+        }
     }
 
     /**
