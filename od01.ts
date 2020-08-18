@@ -119,7 +119,6 @@ namespace OD01 {
                 }
             }
         }
-        draw(1)
 
         /*for (let i = 0; i < 5; i++) {
             _screen[ind + i] = (color > 0) ? Font_5x7[p + i] : Font_5x7[p + i] ^ 0xFF
@@ -225,6 +224,8 @@ namespace OD01 {
         if (newline) {
             scroll()
         }
+        
+        draw(1)
     }
 
      /**
