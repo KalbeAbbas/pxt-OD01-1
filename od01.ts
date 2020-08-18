@@ -110,15 +110,15 @@ namespace OD01 {
 
         for(let i = 0; i < 5; i++)
         {
+            let l = 0
             for(let j = 0; j < 8; j++)
             {
                 if(Font_5x7[p + i] & (1 << j))
                 {
-                    pixel(col + i, row * 8 + j)
-                    pixel(col + i + 1, row * 8 + j)
-                    pixel(col + i , row * 8 + j + 1)
-                    pixel(col + i + 1 , row * 8 + j + 1)
+                    pixel(col + i, row * 8 + l)
+                    pixel(col + i, row * 8 + l + 1)
                 }
+                l += 2
             }
         }
 
