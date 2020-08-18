@@ -107,6 +107,7 @@ namespace OD01 {
 
     function char(c: string, col: number, row: number, color: number = 1) {
         let p = (Math.min(127, Math.max(c.charCodeAt(0), 32)) - 32) * 5
+        let m = 0
 
         for(let i = 0; i < 5; i++)
         {
@@ -115,11 +116,16 @@ namespace OD01 {
             {
                 if(Font_5x7[p + i] & (1 << j))
                 {
-                    pixel(col + i, row * 8 + l)
-                    pixel(col + i, row * 8 + l + 1)
+                    pixel(col + m, row * 8 + l)
+                    pixel(col + m, row * 8 + l + 1)
+
+                    pixel(col + m + 1, row * 8 + l)
+                    pixel(col + m + 1, row * 8 + l + 1)
                 }
+
                 l += 2
             }
+            m += 2
         }
 
         /*for (let i = 0; i < 5; i++) {
