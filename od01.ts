@@ -137,7 +137,7 @@ namespace OD01 {
             let l = 0
             for(let j = 0; j < 8; j++)
             {
-                if(color > 0)
+                if(color == 0)
                 {
                     pixel(col + 10, row * 8 + l)
                     pixel(col + 10, row * 8 + l + 1)
