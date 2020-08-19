@@ -141,6 +141,9 @@ namespace OD01 {
                 {
                     pixel(col + 10, row * 8 + l)
                     pixel(col + 10, row * 8 + l + 1)
+
+                    pixel(col + 11, row * 8 + l)
+                    pixel(col + 11, row * 8 + l + 1)
                 }
 
                 l += 2
