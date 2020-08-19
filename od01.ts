@@ -202,6 +202,7 @@ namespace OD01 {
         if(_DOUBLE)
         {
             steps = 12
+            row *= 2
         }else{
             steps = 6
         }
