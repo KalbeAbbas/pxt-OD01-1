@@ -229,6 +229,16 @@ namespace OD01 {
     }
 
     function scroll() {
+
+        let cy_step = 0
+
+        if(_DOUBLE)
+        {
+            cy_step = 6
+        }else{
+            cy_step = 7
+        }
+
         _cx = 0
 
         if(_DOUBLE)
@@ -237,8 +247,8 @@ namespace OD01 {
         }else{
             _cy++
         }
-        if (_cy > 6) {
-            _cy = 6
+        if (_cy > cy_step) {
+            _cy = cy_step
             if(_DOUBLE)
             {
                 _screen.shift(256)
