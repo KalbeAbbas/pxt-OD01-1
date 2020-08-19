@@ -237,8 +237,8 @@ namespace OD01 {
         }else{
             _cy++
         }
-        if (_cy > 7) {
-            _cy = 7
+        if (_cy > 5) {
+            _cy = 5
             if(_DOUBLE)
             {
                 _screen.shift(256)
