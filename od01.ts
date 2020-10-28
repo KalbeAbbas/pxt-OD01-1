@@ -34,8 +34,9 @@ namespace OD01 {
     let _DRAW = 1
     let _cx = 0
     let _cy = 0
-    let buf_col = pins.createBuffer(7)
+    let buf_col = pins.createBuffer(8)
     let temp_str_len = 0
+    let global_color = 0
 
     let _ZOOM = 0
     let _DOUBLE = 0
@@ -223,6 +224,8 @@ namespace OD01 {
         let m = 0
         let ind = col + row * 128 + 1
 
+        global_color = color
+
 
         for (let i = 0; i < 5; i++) {
             _screen[ind + i] = (color > 0) ? Font_5x7[p + i] : Font_5x7[p + i] ^ 0xFF
@@ -335,15 +338,20 @@ namespace OD01 {
     {
         let ind = buf_col[ID] + ID * 128 + 1
 
-        set_pos(buf_col[ID], ID)
 
         for(let i = 0; i < temp_str_len; i++)
         {
+
+            set_pos(buf_col[ID], ID)
+
+            buf_col[ID] += 6
 
             for(let j = 0; j < 5; j++)
             {
                 _buf7[ind + j] = _screen[ind + j]
             }
+
+            _screen[ind + 5] = (global_color > 0) ? 0 : 0xFF
 
             _buf7[6] = _screen[ind + 5]
 
