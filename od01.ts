@@ -34,6 +34,8 @@ namespace OD01 {
     let _DRAW = 1
     let _cx = 0
     let _cy = 0
+    let buf_col = pins.createBuffer(7)
+    let temp_str_len = 0
 
     let _ZOOM = 0
     let _DOUBLE = 0
@@ -213,6 +215,23 @@ namespace OD01 {
         }
     }
 
+
+    
+
+    function char2(c: string, col: number, row: number, color: number = 1) {
+        let p = (Math.min(127, Math.max(c.charCodeAt(0), 32)) - 32) * 5
+        let m = 0
+        let ind = col + row * 128 + 1
+
+
+        for (let i = 0; i < 5; i++) {
+            _screen[ind + i] = (color > 0) ? Font_5x7[p + i] : Font_5x7[p + i] ^ 0xFF
+        }
+
+        _screen[ind + 5] = (color > 0) ? 0 : 0xFF
+
+    }
+
     /**
      * show text at a specific location on screen. Note - to remove the text print an empty string ("  ") to the same location.
      */
@@ -239,6 +258,39 @@ namespace OD01 {
         }
 
         if(_DOUBLE)draw(1)
+    }
+
+    /**
+     * write text at a specific location on screen. Note - to remove the text print an empty string ("  ") to the same location.
+     */
+    //% blockId="OLED12864_I2C_WRITESTRINGTOBUFFER" block="OD01 write string %s|at col %col|buffer %buffer|color %color"
+    //% s.defl='Hello'
+    //% col.max=120 col.min=0 col.defl=0
+    //% buffer.max=7 buffer.min=0 buffer.defl=0
+    //% color.max=1 color.min=0 color.defl=1
+    //% weight=50 blockGap=8 inlineInputMode=inline
+    //% group="Optional"
+    export function writeStringToBuffer(s: string, col: number, buffer: number, color: number = 1) {
+
+        temp_str_len = s.length
+
+        for(let i = 0; i < 1025; i++)
+        {
+            _screen[i] = 0
+        }
+
+        buf_col[buffer] = col
+ 
+        let steps = 0
+
+        steps = 6
+
+
+        for (let n = 0; n < s.length; n++) {
+            char2(s.charAt(n), col, buffer, color)
+            col += steps
+        }
+
     }
 
     /**
@@ -270,6 +322,36 @@ namespace OD01 {
             _screen[0] = 0x40
             draw(1)
         }
+    }
+
+    /**
+     * show text on screen on specified by buffer id.
+     */
+    //% blockId="OLED12864_I2C_SHOWBUFFER" block="OD01 show buffer %ID"
+    //% ID.max=7 ID.min=0 ID.defl=0
+    //% weight=50 blockGap=8 inlineInputMode=inline
+    //% group="Optional"
+    export function showBuffer(ID: number)
+    {
+        let ind = buf_col[ID] + ID * 128 + 1
+
+        set_pos(buf_col[ID], ID)
+
+        for(let i = 0; i < temp_str_len; i++)
+        {
+
+            for(let j = 0; j < 5; j++)
+            {
+                _buf7[ind + j] = _screen[ind + j]
+            }
+
+            _buf7[6] = _screen[ind + 5]
+
+            pins.i2cWriteBuffer(_I2CAddr, _buf7)
+
+            ind += 6
+        }
+
     }
 
     /**
