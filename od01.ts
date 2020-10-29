@@ -277,11 +277,6 @@ namespace OD01 {
 
         temp_str_len[buffer] = s.length
 
-        /*for(let i = 0; i < 1025; i++)
-        {
-            _screen[i] = 0
-        }*/
-
         buf_col[buffer] = col
  
         let steps = 0
@@ -371,6 +366,7 @@ namespace OD01 {
     //% group="Optional"
     export function hideBuffer(ID: number)
     {
+        buf_col[ID] -= temp_str_len[ID]
         let ind = buf_col[ID] + ID * 128 + 1
 
 
