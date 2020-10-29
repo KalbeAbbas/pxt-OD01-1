@@ -388,7 +388,10 @@ namespace OD01 {
 
             _buf7[6] = _screen[ind + 5]
 
+            basic.showNumber(_buf7[3])
+
             pins.i2cWriteBuffer(_I2CAddr, _buf7)
+
 
             buf_col[ID] += 6
 
