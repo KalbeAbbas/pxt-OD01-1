@@ -35,7 +35,7 @@ namespace OD01 {
     let _cx = 0
     let _cy = 0
     let buf_col = pins.createBuffer(8)
-    let temp_str_len = 0
+    let temp_str_len = pins.createBuffer(8)
     let global_color = 0
 
     let _ZOOM = 0
@@ -275,7 +275,7 @@ namespace OD01 {
     //% group="Optional"
     export function writeStringToBuffer(s: string, col: number, buffer: number, color: number = 1) {
 
-        temp_str_len = s.length
+        temp_str_len[buffer] = s.length
 
         /*for(let i = 0; i < 1025; i++)
         {
@@ -339,7 +339,7 @@ namespace OD01 {
         let ind = buf_col[ID] + ID * 128 + 1
 
 
-        for(let i = 0; i < temp_str_len; i++)
+        for(let i = 0; i < temp_str_len[ID]; i++)
         {
 
             set_pos(buf_col[ID], ID)
