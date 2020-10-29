@@ -328,7 +328,7 @@ namespace OD01 {
     }
 
     /**
-     * show text on screen on specified by buffer id.
+     * show text on screen specified by buffer id.
      */
     //% blockId="OLED12864_I2C_SHOWBUFFER" block="OD01 show buffer %ID"
     //% ID.max=7 ID.min=0 ID.defl=0
@@ -347,6 +347,41 @@ namespace OD01 {
             for(let j = 0; j < 5; j++)
             {
                 _buf7[j + 1] = _screen[ind + j]
+            }
+
+            _screen[ind + 5] = (global_color > 0) ? 0 : 0xFF
+
+            _buf7[6] = _screen[ind + 5]
+
+            pins.i2cWriteBuffer(_I2CAddr, _buf7)
+
+            buf_col[ID] += 6
+
+            ind += 6
+        }
+
+    }
+
+    /**
+     * hide text on screen specified by buffer id.
+     */
+    //% blockId="OLED12864_I2C_HIDEBUFFER" block="OD01 show buffer %ID"
+    //% ID.max=7 ID.min=0 ID.defl=0
+    //% weight=50 blockGap=8 inlineInputMode=inline
+    //% group="Optional"
+    export function hideBuffer(ID: number)
+    {
+        let ind = buf_col[ID] + ID * 128 + 1
+
+
+        for(let i = 0; i < temp_str_len[ID]; i++)
+        {
+
+            set_pos(buf_col[ID], ID)
+
+            for(let j = 0; j < 5; j++)
+            {
+                _buf7[j + 1] = (global_color > 0) ? 0 : 0xFF
             }
 
             _screen[ind + 5] = (global_color > 0) ? 0 : 0xFF
