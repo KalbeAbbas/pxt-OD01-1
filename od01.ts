@@ -366,7 +366,7 @@ namespace OD01 {
     //% group="Optional"
     export function hideBuffer(ID: number)
     {
-        buf_col[ID] -= temp_str_len[ID] * 5
+        buf_col[ID] -= temp_str_len[ID] * 6
         let ind = buf_col[ID] + ID * 128 + 1
 
 
