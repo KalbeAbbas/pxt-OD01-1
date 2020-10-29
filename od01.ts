@@ -344,11 +344,9 @@ namespace OD01 {
 
             set_pos(buf_col[ID], ID)
 
-            buf_col[ID] += 6
-
             for(let j = 0; j < 5; j++)
             {
-                _buf7[ind + j] = _screen[ind + j]
+                _buf7[j + 1] = _screen[ind + j]
             }
 
             _screen[ind + 5] = (global_color > 0) ? 0 : 0xFF
@@ -356,6 +354,8 @@ namespace OD01 {
             _buf7[6] = _screen[ind + 5]
 
             pins.i2cWriteBuffer(_I2CAddr, _buf7)
+
+            buf_col[ID] += 6
 
             ind += 6
         }
