@@ -37,6 +37,7 @@ namespace OD01 {
     let buf_col = pins.createBuffer(8)
     let temp_str_len = pins.createBuffer(8)
     let global_color = 0
+    let hex_arr = "0123456789abcdef"
 
     let _ZOOM = 0
     let _DOUBLE = 0
@@ -261,6 +262,29 @@ namespace OD01 {
         }
 
         if(_DOUBLE)draw(1)
+    }
+
+    function fn_HextoDec(hex_num: string): number {
+        let dec_num = 0
+        for (let index = 0; index <= hex_num.length - 1; index++) {
+            let char = hex_num.charAt(hex_num.length - 1 - index)
+            for (let index2 = 0; index2 <= 15; index2++) {
+                if (char.compare(hex_arr.charAt(index2)) == 0) {
+                    dec_num = dec_num + index2 * Math.pow(16, index)
+                }
+            }
+        }
+        return dec_num
+    }
+
+    export function drawImage(image: string)
+    {
+        for(let i = 0; i < 1024; i++, i++)
+        {
+            _screen[i + 1] = fn_HextoDec(image.substr(i * 2, 2))
+        }
+
+        draw(1)
     }
 
     /**
