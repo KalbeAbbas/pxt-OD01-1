@@ -368,7 +368,6 @@ namespace OD01 {
     //% group="Optional"
     export function hideBuffer(ID: number)
     {
-        basic.showNumber(buf_col[ID])
         let ind = buf_col[ID] + ID * 128 + 1
 
 
