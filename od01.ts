@@ -290,7 +290,7 @@ namespace OD01 {
 
 
         for (let n = 0; n < s.length; n++) {
-            char(s.charAt(n), col, buffer, color)
+            char2(s.charAt(n), col, buffer, color)
             col += steps
         }
 
