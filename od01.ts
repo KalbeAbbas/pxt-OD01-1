@@ -356,7 +356,7 @@ namespace OD01 {
         }
 
         buf_col[ID] -= temp_str_len[ID] * 6
-
+        basic.showNumber(buf_col[ID])
     }
 
     /**
