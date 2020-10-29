@@ -332,7 +332,6 @@ namespace OD01 {
     export function showBuffer(ID: number)
     {
         let ind = buf_col[ID] + ID * 128 + 1
-        buf_col[ID] -= temp_str_len[ID] * 6
 
 
         for(let i = 0; i < temp_str_len[ID]; i++)
@@ -355,6 +354,8 @@ namespace OD01 {
 
             ind += 6
         }
+
+        buf_col[ID] -= temp_str_len[ID] * 6
 
     }
 
