@@ -277,10 +277,10 @@ namespace OD01 {
 
         temp_str_len = s.length
 
-        for(let i = 0; i < 1025; i++)
+        /*for(let i = 0; i < 1025; i++)
         {
             _screen[i] = 0
-        }
+        }*/
 
         buf_col[buffer] = col
  
