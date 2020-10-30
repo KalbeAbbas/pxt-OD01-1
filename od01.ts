@@ -282,10 +282,10 @@ namespace OD01 {
 
         for(let i = 0; i < 1024; i++)
         {
-            _screen[i + 1] = 0xff
+            _screen[i + 1] = fn_HextoDec(image.substr(i * 2, 2))
         }
 
-        draw(1)
+        draw(1);
     }
 
     /**
