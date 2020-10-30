@@ -17,7 +17,7 @@ namespace OD01 {
         Off = 0
     }
 
-    const MIN_X = 0
+    const MIN_X = 0;
     const MIN_Y = 0
     const MAX_X = 127
     const MAX_Y = 63
