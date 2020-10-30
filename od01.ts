@@ -280,9 +280,7 @@ namespace OD01 {
     export function drawImage(image: string)
     {
 
-        set_pos()
-
-        for(let i = 0; i < 1024; i++, i++)
+        for(let i = 0; i < 1024; i++)
         {
             _screen[i + 1] = 0xff
         }
