@@ -126,8 +126,8 @@ namespace OD01 {
         let page = y >> 3
         let shift_page = y % 8
         let ind = x + page * 128 + 1
-        let b = (color) ? (_screen[ind] | (1 << shift_page)) : clrbit(_screen[ind], shift_page)
-        _screen[ind] = b
+        //let b = (color) ? (_screen[ind] | (1 << shift_page)) : clrbit(_screen[ind], shift_page)
+        //_screen[ind] = b
         /*if (_DRAW) {
             set_pos(x, page)
             _buf2[0] = 0x40
