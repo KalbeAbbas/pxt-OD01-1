@@ -1,6 +1,6 @@
 {
     "name": "OD01",
-    "version": "1.3.92",
+    "version": "1.3.93",
     "description": "XinaBox OD01 OLED display: 128x64 pixel",
     "license": "MIT",
     "dependencies": {
