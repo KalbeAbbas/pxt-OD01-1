@@ -130,7 +130,7 @@ namespace OD01 {
         let b = (color) ? (_screen[ind] | (1 << shift_page)) : clrbit(_screen[ind], shift_page)
         _screen[ind] = b*/
 
-        _screen[x + (y/8)*128] |=  (1 << (y&7))
+        _screen[x + y * 16] |=  (1 << (y&7))
         /*if (_DRAW) {
             set_pos(x, page)
             _buf2[0] = 0x40
