@@ -78,7 +78,7 @@ namespace OD01 {
     /**
      * draw / refresh screen
      */
-    function draw(d: number) {
+    export function draw(d: number) {
         if (d > 0) {
             set_pos()
             pins.i2cWriteBuffer(_I2CAddr, _screen)
