@@ -124,11 +124,13 @@ namespace OD01 {
     //% group="Drawing"
     export function pixel(x: number, y: number, color: number = 1) {
         /*let page = y >> 3
-        let shift_page = y % 8*/
-        let ind = x + 1 * 128 + 1
+        let shift_page = y % 8
+        let ind = x + page * 128 + 1
 
-        let b = (color)
-        _screen[ind] = b
+        let b = (color) ? (_screen[ind] | (1 << shift_page)) : clrbit(_screen[ind], shift_page)
+        _screen[ind] = b*/
+
+        _screen[x + (y/8)*128] |=  (1 << (y&7))
         /*if (_DRAW) {
             set_pos(x, page)
             _buf2[0] = 0x40
